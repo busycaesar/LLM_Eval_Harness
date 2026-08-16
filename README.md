@@ -1,21 +1,27 @@
-<!-- Remove the following content when using this template for create repo for project! -->
-This repository serves as a template for all my future project repositories. It contains the common structure, configurations, and files that I use across my projects. The purpose of this repository template is to maintain consistency and standardization across my projects. By using this template, I ensure that all my repositories follow a similar structure and setup, making it easier to manage and maintain them.
-
-While this template is primarily for personal use, contributions and suggestions for improvements are always welcome. If you have ideas for enhancing the template or making it more useful, feel free to submit a pull request or open an issue.
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXS -->
-
-# Project Title
+# LLM Eval
 
 ## Description
 
-## Tech Stack
-![Image Alt](https://skillicons.dev/icons?i=js,ts)
+A Colab notebook (`main.ipynb`) that benchmarks Anthropic Claude models against the [MMLU](https://huggingface.co/datasets/cais/mmlu) multiple-choice question dataset. It samples questions, prompts the model, parses its letter answer, scores accuracy, and saves per-question results to CSV.
 
-## How it looks?
+## Tech Stack
+
+![Image Alt](https://skillicons.dev/icons?i=python)
 
 ## Features
 
+- Configurable model, dataset, and sample size (`MODEL`, `DATASET`, `SAMPLE_SIZE` in the config cell)
+- Parallel evaluation via `ThreadPoolExecutor` with retry/backoff on API calls
+- Automatic answer extraction and scoring (accuracy, unparsed responses, API errors)
+- Results exported to `eval_results/results_<model>.csv` with subject, question, gold answer, prediction, raw response, and correctness
+
 ## How to run the project?
 
+1. Open `main.ipynb` in [Google Colab](https://colab.research.google.com/github/busycaesar/LLM_Eval/blob/Master/main.ipynb) (or run locally with Jupyter).
+2. Set an `ANTHROPIC_API_KEY` secret (Colab userdata, or adapt the client init for a local `.env`).
+3. Adjust `MODEL`, `DATASET`, and `SAMPLE_SIZE` in the configuration cell as needed.
+4. Run all cells. Results are saved as a CSV in `eval_results/`.
+
 ## Author
+
 [Dev J. Shah](https://github.com/busycaesar)
