@@ -1,1 +1,2 @@
-from .dataset import get_dataset, get_prompt_for_data, extract_prediction, DATASET, LETTERS
+from .base import Dataset
+from .mmlu import MMLUDataset
