@@ -9,13 +9,12 @@ def call_model(prompt, infer_llm, retries=4):
                 return f"ERROR: {e}"
             time.sleep(2 ** attempt)
 
-def run_evaluation(data, prompt, correct_answer, extract_prediction, infer_llm):
+def run_evaluation(metadata, prompt, correct_answer, extract_prediction, infer_llm):
     raw_response = call_model(prompt, infer_llm)
     prediction = extract_prediction(raw_response)
 
     return {
-        "subject": data["subject"],
-        "question": data["question"],
+        **metadata,
         "raw_response": raw_response,
         "prediction": prediction,
         "correct_answer": correct_answer,
