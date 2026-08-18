@@ -1,4 +1,5 @@
 eval_results/
+docs/
 
 # Python
 __pycache__/
