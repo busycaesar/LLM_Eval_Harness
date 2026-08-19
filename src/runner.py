@@ -1,9 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from tqdm.auto import tqdm
-
 from eval import run_evaluation, analyze_results, get_table_from_results, store_results
-from data_source import get_dataset
+from dataset import get_dataset
 from llm import get_llm
 
 def run(provider: str, model: str, dataset_name: str, sample_size: int):
