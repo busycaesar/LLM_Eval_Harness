@@ -6,8 +6,8 @@ from dataset import get_dataset
 from llm import get_llm
 
 def run(provider: str, model: str, dataset_name: str, sample_size: int):
-    llm = get_llm(provider, model)
     data_source = get_dataset(dataset_name, sample_size)
+    llm = get_llm(provider, model, data_source.max_tokens)
 
     rows = data_source.load()
     metadatas = [data_source.metadata(dataset) for dataset in rows]
