@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
 
 class Provider(ABC):
+    @abstractmethod
+    def __init__(self, api_key: str, model: str, max_tokens: int):
+        """Provider constructor contract: takes api_key, model identifier, and max_tokens cap."""
+
     @property
     @abstractmethod
     def model_name(self) -> str:

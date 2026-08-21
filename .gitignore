@@ -1,5 +1,6 @@
 eval_results/
 docs/
+src/llm/providers/
 
 # Python
 __pycache__/
