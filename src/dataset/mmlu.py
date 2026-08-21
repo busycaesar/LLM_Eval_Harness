@@ -15,6 +15,11 @@ class MMLUDataset(Dataset):
     def name(self) -> str:
         return self._NAME
 
+    @property
+    def max_tokens(self) -> int:
+        # Answers are a single letter (A/B/C/D). 16 is generous.
+        return 16
+
     def load(self):
         dataset = load_dataset(self._NAME, "all", split="test", token=self._hf_token)
         if self._sample_size:

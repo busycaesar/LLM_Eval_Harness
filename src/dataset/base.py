@@ -7,6 +7,11 @@ class Dataset(ABC):
     def name(self) -> str:
         """Identifier used for output labels (e.g. the dataset name)."""
 
+    @property
+    @abstractmethod
+    def max_tokens(self) -> int:
+        """Max tokens per LLM response for this dataset (e.g. 16 for MCQ, higher for open-ended)."""
+
     @abstractmethod
     def load(self) -> list[dict[str, Any]]:
         """Return the dataset to evaluate."""
