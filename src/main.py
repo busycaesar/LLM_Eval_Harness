@@ -1,4 +1,5 @@
 import argparse
+import sys
 from runner import run
 from workflows import add_model_dispatch, chat_dispatch
 
@@ -23,12 +24,16 @@ def _make_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = _make_parser().parse_args()
 
-    if args.command == "run":
-        run(args.provider, args.model, args.dataset, args.sample_size)
-    elif args.command == "chat":
-        chat_dispatch(args.text)
-    elif args.command == "add-model":
-        add_model_dispatch(args.model)
+    try:
+        if args.command == "run":
+            run(args.provider, args.model, args.dataset, args.sample_size)
+        elif args.command == "chat":
+            chat_dispatch(args.text)
+        elif args.command == "add-model":
+            add_model_dispatch(args.model)
+    except RuntimeError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

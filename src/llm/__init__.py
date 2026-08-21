@@ -17,7 +17,7 @@ def get_llm(provider_name: str, model: str, max_tokens: int) -> Provider:
         raise RuntimeError(
             f"No provider `{provider_name}` installed. Add it via:\n"
             f"  python src/main.py chat 'add {model}'"
-        )
+        ) from None
 
     cls = getattr(module, class_name, None)
     
