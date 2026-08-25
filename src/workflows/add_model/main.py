@@ -1,7 +1,7 @@
 from .prompt_parser import parse_prompt
 from .provider_file_creator import create_provider_file
 from .provider_sdk_docs_fetcher import fetch_provider_sdk_docs
-from .report import emit
+from .status_messages import emit
 from workflows.utils import install_if_missing
 from .util import provider_file_exists
 

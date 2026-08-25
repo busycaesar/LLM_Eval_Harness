@@ -10,7 +10,7 @@ def call_model(prompt, infer_llm, retries=4):
                 return f"ERROR: {e}"
             time.sleep(2 ** attempt)
 
-def run_evaluation(metadata, prompt, correct_answer, extract_prediction, infer_llm):
+def run_evaluation(metadata, prompt, correct_answer, extract_prediction, infer_llm, is_correct):
     raw_response = call_model(prompt, infer_llm)
     prediction = extract_prediction(raw_response)
 
@@ -19,7 +19,7 @@ def run_evaluation(metadata, prompt, correct_answer, extract_prediction, infer_l
         "raw_response": raw_response,
         "prediction": prediction,
         "correct_answer": correct_answer,
-        "accurate": prediction == correct_answer,
+        "accurate": is_correct(prediction, correct_answer),
     }
 
 def store_results(path, results_table):

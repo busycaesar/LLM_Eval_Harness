@@ -15,7 +15,12 @@ def run(provider: str, model: str, dataset_name: str, sample_size: int):
     correct_answers = [data_source.correct_answer(dataset) for dataset in rows]
 
     # ex.map needs a list for each argument that the function takes. Since extract_prediction and infer don't change per dataset, we lock them in with partial. ex.map then only loops over the three per-dataset lists (metadatas, prompts, correct_answers).
-    evaluate = partial(run_evaluation, extract_prediction=data_source.extract_prediction, infer_llm=llm.infer)
+    evaluate = partial(
+        run_evaluation,
+        extract_prediction=data_source.extract_prediction,
+        infer_llm=llm.infer,
+        is_correct=data_source.is_correct,
+    )
 
     with ThreadPoolExecutor(max_workers=8) as ex:
         results = list(tqdm(ex.map(evaluate, metadatas, prompts, correct_answers), total=len(rows)))

@@ -29,5 +29,11 @@ class Dataset(ABC):
         """Parse the LLM's raw response into a comparable answer, or None if unparseable."""
 
     @abstractmethod
+    def is_correct(self, prediction: str | None, correct_answer: str) -> bool:
+        """
+        Decide whether `prediction` counts as correct against `correct_answer`.
+        """
+
+    @abstractmethod
     def metadata(self, data: dict[str, Any]) -> dict[str, Any]:
         """Return context fields to include alongside eval results (e.g. subject, question)."""

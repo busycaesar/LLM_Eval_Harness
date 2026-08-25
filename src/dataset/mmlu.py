@@ -42,5 +42,8 @@ class MMLUDataset(Dataset):
         match = re.search(r"\b([ABCD])\b", response.strip().upper())
         return match.group(1) if match else None
 
+    def is_correct(self, prediction, correct_answer):
+        return prediction == correct_answer
+
     def metadata(self, row):
         return {"subject": row["subject"], "question": row["question"]}
